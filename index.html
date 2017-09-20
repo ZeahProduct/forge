@@ -1,0 +1,44 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Tome Clicker</title>
+		<style>
+			.noselect {
+			  -webkit-touch-callout: none;
+			    -webkit-user-select: none;
+			     -khtml-user-select: none;
+			       -moz-user-select: none;
+			        -ms-user-select: none;
+			            user-select: none;
+			}
+			#mainButton {
+				border:0;
+				background:transparent;
+				outline:none;
+			}
+			#mainButton.img {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="currency">Burnt Pages: 0</div><br>
+		<button id="mainButton" class="noselect"><img src="tome1.png" draggable="false"></button></img>
+	</body>
+	<script>
+		var currency = 0;
+
+		function updateLabels() {
+			document.getElementById("currency").innerHTML = "Burnt Pages: " + currency;
+		}
+
+		document.getElementById("mainButton").onmousedown = function() {
+			this.innerHTML = "<img src='tome2.png'></img>";
+			setTimeout(function() {
+				document.getElementById("mainButton").innerHTML = "<img src='tome1.png'></img>";
+				currency++;
+				updateLabels();
+			}, 100)
+		}
+	</script>
+</html>
