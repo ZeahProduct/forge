@@ -60,11 +60,13 @@
 		<h3><div id="currency">Burnt Pages: 0</div></h3><br>
 		<button id="mainButton" class="noselect"><img src="tome1.png" draggable="false"></button></img>
 		<div id="upgrades">
-			<h3><button id="buyAxe"><img width="20" height="20" src="https://vignette.wikia.nocookie.net/2007scape/images/b/bc/Iron_axe_detail.png/revision/latest/scale-to-width-down/130?cb=20161030175832" draggable="false">Upgrade Axe - 50 Pages</button></h3>
+			<h3><button id="buyAxe"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Upgrade Axe - 50 Pages</button></h3>
 		</div>
 	</body>
 	<script>
 		var currency = 0;
+		var axeCost = 50;
+		var currencyGain = 1;
 
 		function updateLabels() {
 			document.getElementById("currency").innerHTML = "Burnt Pages: " + currency;
@@ -74,9 +76,18 @@
 			this.innerHTML = "<img src='tome2.png'></img>";
 			setTimeout(function() {
 				document.getElementById("mainButton").innerHTML = "<img src='tome1.png'></img>";
-				currency++;
+				currency += currencyGain;
 				updateLabels();
 			}, 100)
+		}
+		
+		document.getElementById("buyAxe").onclick = function() {
+			if (currency >= axeCost) {
+			    currency -= axeCost;
+			    axeCost *= 2;
+			    currencyGain += 1;
+			    document.getElementById("buyAxe").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Upgrade Axe - '+axeCost+' Pages'
+			}
 		}
 	</script>
 </html>
