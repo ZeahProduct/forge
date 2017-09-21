@@ -56,7 +56,8 @@
 		</style>
 	</head>
 	<body>
-		<h1>Tome Clicker</h1><br>
+		<h1>Tome Clicker</h1>
+		<h3><div id="perSecond">PPS: 0</div></h3><br>
 		<h3><div id="currency">Burnt Pages: 0</div></h3><br>
 		<button id="mainButton" class="noselect"><img src="tome1.png" draggable="false"></button></img>
 		<div id="upgrades">
@@ -77,6 +78,7 @@
 
 		function updateLabels() {
 			document.getElementById("currency").innerHTML = "Burnt Pages: " + currency;
+			document.getElementById("perSecond").innerHTML = "PPS: " + autoGain;
 			document.getElementById("buyAxe").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Hire Lumberjack - '+axeCost+' Pages'
 			document.getElementById("buyAxe2").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/1/12/Tinderbox_detail.png" draggable="false">Hire Pyromancer - '+axeCost2+' Pages'
 			document.getElementById("buyGear").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/8/87/Bruma_torch_detail.png" draggable="false">Upgrade Gear - '+gearCost+' Pages'
