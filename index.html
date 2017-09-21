@@ -60,16 +60,18 @@
 		<h3><div id="currency">Burnt Pages: 0</div></h3><br>
 		<button id="mainButton" class="noselect"><img src="tome1.png" draggable="false"></button></img>
 		<div id="upgrades">
-			<h3><button id="buyAxe"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Upgrade Axe - 50 Pages</button></h3>
+			<h3><button id="buyAxe"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Hire Lumberjack - 50 Pages</button></h3>
 		</div>
 	</body>
 	<script>
 		var currency = 0;
 		var axeCost = 50;
 		var currencyGain = 1;
+		var autoGain = 0;
 
 		function updateLabels() {
 			document.getElementById("currency").innerHTML = "Burnt Pages: " + currency;
+			document.getElementById("buyAxe").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Hire Lumberjack - '+axeCost+' Pages'
 		}
 
 		document.getElementById("mainButton").onmousedown = function() {
@@ -85,10 +87,13 @@
 			if (currency >= axeCost) {
 			    currency -= axeCost;
 			    axeCost *= 2;
-			    currencyGain += 1;
 			    updateLabels();
-			    document.getElementById("buyAxe").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/3/34/Dragon_axe_detail.png" draggable="false">Upgrade Axe - '+axeCost+' Pages'
 			}
 		}
+		
+		setInterval(function () {
+			currency += autoGain;
+			updateLabels();
+		}, 1000);
 	</script>
 </html>
