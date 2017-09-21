@@ -68,6 +68,7 @@
 				<button id="buyAxe2"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/1/12/Tinderbox_detail.png" draggable="false">Hire Pyromancer - 100 Pages</button><br>
 				<button id="buyAxe3"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/5/56/Bruma_herb.png" draggable="false">Hire Farmer - 200 Pages</button><br>
 				<button id="buyAxe4"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/e/e7/Rejuvenation_potion_%284%29.png" draggable="false">Hire Chemist - 400 Pages</button><br>
+				<button id="buyAxe5"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/a/af/Knife_detail.png" draggable="false">Hire Fletcher - 800 Pages</button><br>
 				<button id="buyGear"><img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/8/87/Bruma_torch_detail.png" draggable="false">Upgrade Gear - 150 Pages</button><br>
 			</h3>
 		</div>
@@ -78,6 +79,7 @@
 		var axeCost2 = 100;
 		var axeCost3 = 200;
 		var axeCost4 = 400;
+		var axeCost5 = 800;
 		var gearCost = 150;
 		var currencyGain = 1;
 		var autoGain = 0;
@@ -89,6 +91,7 @@
 			document.getElementById("buyAxe2").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/1/12/Tinderbox_detail.png" draggable="false">Hire Pyromancer - '+axeCost2+' Pages'
 			document.getElementById("buyAxe3").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/5/56/Bruma_herb.png" draggable="false">Hire Farmer - '+axeCost3+' Pages'
 			document.getElementById("buyAxe4").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/e/e7/Rejuvenation_potion_%284%29.png" draggable="false">Hire Chemist - '+axeCost4+' Pages'
+			document.getElementById("buyAxe5").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/a/af/Knife_detail.png" draggable="false">Hire Fletcher - '+axeCost5+' Pages'
 			document.getElementById("buyGear").innerHTML = '<img width="16" height="16" src="https://vignette.wikia.nocookie.net/2007scape/images/8/87/Bruma_torch_detail.png" draggable="false">Upgrade Gear - '+gearCost+' Pages'
 		}
 
@@ -114,7 +117,7 @@
 			if (currency >= axeCost2) {
 			    currency -= axeCost2;
 			    autoGain += 2;
-			    axeCost2 *= 3;
+			    axeCost2 *= 2;
 			    updateLabels();
 			}
 		}
@@ -123,7 +126,7 @@
 			if (currency >= axeCost3) {
 			    currency -= axeCost3;
 			    autoGain += 3;
-			    axeCost3 *= 4;
+			    axeCost3 *= 2;
 			    updateLabels();
 			}
 		}
@@ -132,7 +135,16 @@
 			if (currency >= axeCost4) {
 			    currency -= axeCost4;
 			    autoGain += 4;
-			    axeCost4 *= 5;
+			    axeCost4 *= 2;
+			    updateLabels();
+			}
+		}
+		
+		document.getElementById("buyAxe5").onclick = function() {
+			if (currency >= axeCost5) {
+			    currency -= axeCost5;
+			    autoGain += 5;
+			    axeCost5 *= 2;
 			    updateLabels();
 			}
 		}
@@ -141,7 +153,7 @@
 			if (currency >= gearCost) {
 			    currency -= gearCost;
 			    currencyGain += 1;
-			    gearCost *= 6;
+			    gearCost *= 3;
 			    updateLabels();
 			}
 		}
