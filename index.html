@@ -86,6 +86,7 @@
 		document.getElementById("buyAxe").onclick = function() {
 			if (currency >= axeCost) {
 			    currency -= axeCost;
+			    autoGain += 1;
 			    axeCost *= 2;
 			    updateLabels();
 			}
