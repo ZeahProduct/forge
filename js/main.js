@@ -6,7 +6,17 @@ function saveData() {
     localStorage.setItem("slots", JSON.stringify([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])); // Create empty save data
   }
 
-  // Save Gallery
+  if (localStorage.getItem("trash") === null) {
+    localStorage.setItem("trash", 0);
+  } else {
+    // Save trash can
+    var trashcans = $(".trash-box").find("image");
+    if (trashcans.length > 0) {
+      localStorage.setItem("trash", trashcans[0].src)
+    }
+  }
+
+  // Save gallery
   localStorage.setItem("highestBar", highestBar);
 
   var slotIndex = 0;
@@ -38,6 +48,13 @@ function loadData() {
     });
   }
 
+  if (localStorage.getItem("trash") !== null) { // If trash can has been saved
+    var trashSrc = localStorage.getItem("trash");
+    if (trashSrc != "0") {
+      $(".trash-box").find("img").attr("src", trashSrc);
+    }
+  }
+
   if (localStorage.getItem("highestBar") !== null) { // If gallery has been saved
     highestBar = parseInt(localStorage.getItem("highestBar"));
   }
@@ -50,7 +67,19 @@ function loadData() {
       $('img').filter("[src='images/hiddenbar.png']").first().attr("src", bars[i]);
     }
 
-    $(".grid-image").draggable({ containment:  $(".grid-image").parent().parent(), revert: true });
+    $(".grid-image").draggable({ revert: true });
+    $(".trash-box").droppable({ drop: function(event, ui) {
+        var firstElement = $(ui.draggable)[0];
+        var secondElement = $(this).find("i")[0];
+        var firstImage = $(ui.draggable).attr("src");
+        var secondImage = $(this).find("img").attr("src");
+        var sourceArray = firstImage.split("/");
+        var sourceName = sourceArray[sourceArray.length - 1];
+        $(this).html('<i class="fas fa-trash-alt"></i><img src="images/' + sourceName + '" class="grid-image" draggable="false">');
+        $(this).find(".grid-image").draggable({ revert: true });
+        firstElement.outerHTML = "";
+        saveData();
+    }});
     $(".grid-box").droppable({drop: function(event, ui) {
       var firstElement = $(ui.draggable)[0];
       var secondElement = $(this).find("img")[0];
@@ -72,12 +101,14 @@ function loadData() {
         var sourceArray = firstImage.split("/");
         var sourceName = sourceArray[sourceArray.length - 1];
         $(this).html('<img src="images/' + sourceName + '" class="grid-image" draggable="false">');
-        $(this).find(".grid-image").draggable({ containment:  $(".grid-image").parent().parent(), revert: true });
+        $(this).find(".grid-image").draggable({ revert: true });
         firstElement.outerHTML = "";
+        saveData();
       } else if (firstImage != secondImage) { // If the tiers are different
         var firstSrc = firstImage;
         firstElement.src = secondImage;
         secondElement.src = firstSrc;
+        saveData();
       }
     }});
   })
@@ -89,7 +120,7 @@ function newBar() {
   if (images.length < boxes.length) {
     var firstWithoutImage = $(".grid-box:not(:has(img))")[0];
     firstWithoutImage.innerHTML = '<img src="images/bronzebar.png" class="grid-image" draggable="false">';
-    $(firstWithoutImage).find(".grid-image").draggable({ containment:  $(".grid-image").parent().parent(), revert: true });
+    $(firstWithoutImage).find(".grid-image").draggable({ revert: true });
   }
   if (highestBar < 1) {
     highestBar = 1;
