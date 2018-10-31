@@ -1,9 +1,13 @@
-var bars = ["images/bronzebar.png", "images/ironbar.png", "images/silverbar.png", "images/goldbar.png", "images/mithrilbar.png", "images/uraniumbar.png", "images/lavabar.png", "images/lunarbar.png", "images/astralbar.png", "images/duskbar.png", "images/aquaticbar.png"];
+var bars = ["images/bronzebar.png", "images/ironbar.png", "images/silverbar.png", "images/goldbar.png", "images/platinumbar.png", "images/mithrilbar.png", "images/uraniumbar.png", "images/lavabar.png", "images/lunarbar.png", "images/astralbar.png", "images/duskbar.png", "images/aquaticbar.png"];
+var highestBar = 0;
 
 function saveData() {
   if (localStorage.getItem("slots") === null) { // If data has not been saved
     localStorage.setItem("slots", JSON.stringify([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])); // Create empty save data
   }
+
+  // Save Gallery
+  localStorage.setItem("highestBar", highestBar);
 
   var slotIndex = 0;
   var savedData = JSON.parse(localStorage.getItem("slots"));
@@ -34,7 +38,18 @@ function loadData() {
     });
   }
 
+  if (localStorage.getItem("highestBar") !== null) { // If gallery has been saved
+    highestBar = parseInt(localStorage.getItem("highestBar"));
+  }
+
+  // Setup starting events
   $(function() {
+
+    // Load gallery images
+    for (var i = 0; i < highestBar; i++) {
+      $('img').filter("[src='images/hiddenbar.png']").first().attr("src", bars[i]);
+    }
+
     $(".grid-image").draggable({ containment:  $(".grid-image").parent().parent(), revert: true });
     $(".grid-box").droppable({drop: function(event, ui) {
       var firstElement = $(ui.draggable)[0];
@@ -44,8 +59,13 @@ function loadData() {
 
       if (firstImage == secondImage && firstElement !== secondElement) { // If the tiers are the same and the bars are different
         if (firstImage != bars[bars.length - 1]) { // If not highest tier
-          firstElement.src = bars[bars.indexOf(firstImage) + 1]; // Upgrade tier by 1
+          var newTier = bars.indexOf(firstImage) + 1;
+          firstElement.src = bars[newTier]; // Upgrade tier by 1
           secondElement.outerHTML = ""; // Remove extra bar
+          if (parseInt(localStorage.getItem("highestBar")) < newTier + 1) {
+            highestBar = newTier + 1;
+           $('img').filter("[src='images/hiddenbar.png']").first().attr("src", bars[newTier]);  // Update gallery
+          }
           saveData();
         }
       } else if (!secondImage) { // If dragging to an empty space
@@ -71,14 +91,13 @@ function newBar() {
     firstWithoutImage.innerHTML = '<img src="images/bronzebar.png" class="grid-image" draggable="false">';
     $(firstWithoutImage).find(".grid-image").draggable({ containment:  $(".grid-image").parent().parent(), revert: true });
   }
+  if (highestBar < 1) {
+    highestBar = 1;
+    $('img').filter("[src='images/hiddenbar.png']").first().attr("src", bars[0]);  // Update gallery
+  }
   saveData();
 }
 
 loadData();
 
 setInterval(newBar, 5000);
-
-var siteWidth = 1280;
-var scale = screen.width /siteWidth
-
-document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
