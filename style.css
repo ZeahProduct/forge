@@ -13,6 +13,7 @@ body {
   width: 100%;
   margin: 0 auto;
   font-family: 'Source Sans Pro', Arial, sans-serif;
+  overflow: hidden;
 }
 
 .mega-white {
@@ -64,6 +65,9 @@ body {
   background: linear-gradient(#5ea76e, #4a8457);
   margin: 3px;
   border: 1px solid rgb(68, 142, 82);
+}
+
+.progress-animated {
   animation-duration: 5s;
   animation-name: progress-width;
   animation-iteration-count: infinite;
@@ -79,6 +83,14 @@ body {
     font-size: 24px;
     color: white;
     text-shadow: 0px 0px 6px #000;
+}
+
+.shadow-text {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+  color: white;
+  text-shadow: 0px 0px 6px #000;
+  text-align: center;
 }
 
 .grid-container {
@@ -262,4 +274,72 @@ body {
   z-index: 500;
   -webkit-filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
   filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
+}
+
+.deposit-box {
+  float:left;
+  margin: 8px;
+  width: 50px;
+  height: 50px;
+  background: #888;
+  border: 2px solid rgba(0,0,0,0.1);
+  -o-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  -icab-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  -khtml-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  display: inline-block;
+  position:relative;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.deposit-box img {
+  width: 75%;
+  top: 12.5%;
+  left: 12.5%;
+  position: absolute;
+  z-index: 500;
+  -webkit-filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
+  filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
+}
+
+.upgrade-button {
+  display: inline-block;
+  font-weight: 500;
+  height: 50px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1.5rem;
+  line-height: 2;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .25s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: #fff;
+  background-color: #23272b;
+  border: none;
+  -o-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  -icab-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  -khtml-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  margin: 5px 0px 10px 5px;
+  cursor: pointer;
+}
+
+.upgrade-button:hover {
+  background-color: #1d2124;
 }
