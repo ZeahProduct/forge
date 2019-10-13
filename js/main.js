@@ -141,8 +141,8 @@ function loadData() {
       if (firstImage == secondImage && firstElement !== secondElement) { // If the tiers are the same and the bars are different
         if (firstImage != bars[bars.length - 1]) { // If not highest tier
           var newTier = bars.indexOf(firstImage) + 1;
-          firstElement.src = bars[newTier]; // Upgrade tier by 1
-          secondElement.outerHTML = ""; // Remove extra bar
+          secondElement.src = bars[newTier]; // Upgrade tier by 1
+          firstElement.outerHTML = ""; // Remove extra bar
           if (parseInt(localStorage.getItem("highestBar")) < newTier + 1) {
             highestBar = newTier + 1;
             $('img').filter("[src='images/hiddenbar.png']").first().attr("src", bars[newTier]);  // Update gallery
@@ -172,8 +172,8 @@ function loadData() {
       if (firstImage == secondImage && firstElement !== secondElement) { // If the tiers are the same and the bars are different
         if (firstImage != bars[bars.length - 1]) { // If not highest tier
           var newTier = bars.indexOf(firstImage) + 1;
-          firstElement.src = bars[newTier]; // Upgrade tier by 1
-          secondElement.outerHTML = ""; // Remove extra bar
+          secondElement.src = bars[newTier]; // Upgrade tier by 1
+          firstElement.outerHTML = ""; // Remove extra bar
           if (parseInt(localStorage.getItem("highestBar")) < newTier + 1) {
             highestBar = newTier + 1;
            $('img').filter("[src='images/hiddenbar.png']").first().attr("src", bars[newTier]);  // Update gallery
